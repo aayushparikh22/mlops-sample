@@ -3,6 +3,10 @@ from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LogisticRegression
 import joblib
 
+import os
+
+
+
 def train():
     df = pd.read_csv("data/sample_data.csv")
     X = df[['feature1', 'feature2']]
@@ -14,6 +18,7 @@ def train():
 
     score = model.score(X_test, y_test)
     print(f"Model accuracy: {score:.2f}")
+    os.makedirs("model", exist_ok=True) 
     joblib.dump(model, "model/model.pkl")
 
 if __name__ == "__main__":
